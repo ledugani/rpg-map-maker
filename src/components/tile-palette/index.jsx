@@ -8,7 +8,7 @@ export default function TilePalette({ position, size }) {
 
 	for(let y = 0; y < height; y = y + 32) {
 		const row = []
-		for(let x = 0; x < height; x = x + 32) {
+		for(let x = 0; x < width; x = x + 32) {
 			row.push({
 				x, y, id: id++
 			})
@@ -16,7 +16,7 @@ export default function TilePalette({ position, size }) {
 		tiles.push(row)
 	}
 
-	return(
+	return (
 		<div
 			id="palette"
 			style={{
@@ -25,14 +25,22 @@ export default function TilePalette({ position, size }) {
 				top: position.y,
 				left: position.x,
 				zIndex: 100,
-				backgroundColor: "white"
+				backgroundColor: "white",
 			}}
 		>
 			<img id="handle" src="/img/drag-handle.png" alt=""/>
 			{
 				tiles.map((row, y) => (
-					<div style={{ display: "flex "}}>
-
+					<div style={{ display: "flex" }}>
+						{row.map((tile, x) => <div
+							style={{
+								borderTop: "1px solid black",
+								borderRight: "1px solid black",
+								background: `url(/sprites/rpg-nature-tileset/spring.png) -${x * 32}px - ${y * 32}px no-repeat`,
+								width: 32,
+								height: 32,
+							}}
+						></div>)}
 					</div>
 				))
 			}
