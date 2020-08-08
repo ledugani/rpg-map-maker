@@ -41,15 +41,18 @@ export default function App() {
       <TilePalette
         position={position}
 				tileset={tileset}
+				setTileset={setTileset}
 				activeTile={activeTile}
 				setActiveTile={setActiveTile}
-        size={{
-          width: 640,
-          height: 288,
-        }}
       />
 
-      <Map tiles={tiles} tileset={tileset} size={mapSize} activeTile={activeTile} setTiles={setTiles} />
+      <Map
+				tiles={tiles}
+				tileset={tileset}
+				size={mapSize}
+				activeTile={activeTile}
+				setTiles={setTiles}
+			/>
     </div>
   );
 }

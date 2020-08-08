@@ -1,7 +1,19 @@
 import React from "react";
 
-export default function TilePalette({ tileset, position, size, activeTile, setActiveTile }) {
-  const { width, height } = size;
+export default function TilePalette({ tileset, position, activeTile, setActiveTile }) {
+  const tilesetData = require("../../data/tilesets.json");
+
+  const tilesets = Object.keys(tilesetData).map(set => ({
+    type: "group",
+    name: set.replace(/-/g, " "),
+    items: tilesetData[set].variants.map(variant => ({
+      value: `${set}/${variant}`,
+      label: variant,
+    }))
+  }))
+
+  const [tilesetGroup, tilesetVariant] = tileset.split("/")
+  const {width, height} = tilesetData[tilesetGroup].size;
   const tiles = [];
   let id = 0;
 
